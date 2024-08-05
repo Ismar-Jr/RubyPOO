@@ -1,0 +1,91 @@
+O que é Escopo?
+Em Ruby, o escopo define a visibilidade e o tempo de vida de uma variável. Em outras palavras, determina onde e por quanto tempo uma variável pode ser acessada dentro de um programa.
+
+Tipos de Escopo em Ruby
+1. Escopo Local:
+
+Onde: Dentro de métodos, blocos ou módulos.
+Visibilidade: A variável só é visível dentro do escopo onde foi definida.
+Exemplo:
+
+def my_method
+  local_variable = "Sou uma variável local"
+  puts local_variable
+end
+
+my_method # Imprime: Sou uma variável local
+puts local_variable # Erro: undefined local variable or method `local_variable' for main:Object
+
+
+2. Escopo de Instância:
+
+Onde: Dentro de uma instância de uma classe.
+Visibilidade: A variável é acessível por todos os métodos daquela instância.
+Notação: Iniciadas com @.
+Exemplo:
+Ruby
+class Pessoa
+  def initialize(nome)
+    @nome = nome
+  end
+
+  def saudacao
+    puts "Olá, meu nome é #{@nome}"
+  end
+end
+
+pessoa1 = Pessoa.new("João")
+pessoa1.saudacao # Imprime: Olá, meu nome é João
+Use o código com cuidado.
+
+3. Escopo de Classe:
+
+Onde: Dentro de uma classe, mas não dentro de um método de instância.
+Visibilidade: Compartilhada por todas as instâncias da classe.
+Notação: Iniciadas com @@.
+Exemplo:
+Ruby
+class ContaBancaria
+  @@taxa_juros = 0.05
+
+  def initialize(saldo)
+    @saldo = saldo
+  end
+
+  def calcular_juros
+    @saldo * @@taxa_juros
+  end
+end
+
+conta1 = ContaBancaria.new(1000)
+conta2 = ContaBancaria.new(2000)
+
+puts conta1.calcular_juros # Imprime: 50.0
+puts conta2.calcular_juros # Imprime: 100.0
+Use o código com cuidado.
+
+4. Escopo Global:
+
+Onde: Acessível em qualquer parte do programa.
+Notação: Iniciadas com $.
+Aviso: O uso de variáveis globais é geralmente desencorajado, pois pode levar a efeitos colaterais inesperados e dificultar a depuração.
+Ruby
+$variavel_global = "Sou uma variável global"
+Use o código com cuidado.
+
+Regras Gerais:
+Prioridade: O escopo mais interno tem precedência sobre os escopos externos.
+Visibilidade: Uma variável só é visível dentro do seu escopo.
+Tempo de vida: Uma variável local existe apenas dentro do bloco onde foi definida. Variáveis de instância e classe existem durante todo o tempo de vida do objeto ou da classe, respectivamente.
+Por que o Escopo é Importante?
+Organização do código: Ajuda a manter o código limpo e fácil de entender.
+Prevenção de erros: Evita conflitos entre variáveis com nomes iguais em diferentes escopos.
+Melhora a reutilização de código: Permite criar métodos e classes mais independentes.
+Dicas para Usar Escopo em Ruby:
+Prefira variáveis locais: São mais seguras e fáceis de gerenciar.
+Utilize variáveis de instância para dados específicos de cada objeto.
+Use variáveis de classe com cautela: Elas são compartilhadas por todas as instâncias da classe.
+Evite variáveis globais: Elas podem levar a problemas de difícil depuração.
+Em resumo:
+
+O escopo em Ruby é um conceito fundamental que influencia a visibilidade e o tempo de vida das variáveis. Ao entender os diferentes tipos de escopo e suas regras, você poderá escrever código Ruby mais organizado, eficiente e livre de erros.
